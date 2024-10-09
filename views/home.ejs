@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partial/head') %>
+        <title>Home</title>
+</head>
+
+<body>
+    <%- include('./partial/nav') %>
+
+        
+        <% if (locals.user) { %>
+            <div class="container mt-3 ">
+                <div class="row row-cols-3" >
+                    <% blogs.forEach(blog=> { %>
+                        <div class="col" style="border: 1px solid black;">
+                            <div class="card col" style="width: 18rem;">
+                                <img src=<%=blog.coverImage %> class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <p class="card-text"><%= blog.body %></p>
+                                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+            <br>
+        <% } %>
+
+        <% if (!locals.user) { %>
+            <div class="mt-4">
+                <h2 style="text-align: center;color: red;">Welcome to Home</h2>
+            </div>
+        <% } %>
+
+
+
+        <%- include('./partial/script') %>
+</body>
+
+</html>
